@@ -1,0 +1,122 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red180\green0\blue98;\red68\green137\blue147;
+\red0\green11\blue255;\red77\green0\blue158;\red92\green38\blue153;\red46\green13\blue110;\red32\green60\blue63;
+\red48\green111\blue121;\red186\green0\blue17;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c70682\c0\c38264;\csgenericrgb\c26518\c53646\c57619;
+\csgenericrgb\c0\c4459\c99822;\csgenericrgb\c30278\c0\c61966;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c18100\c5200\c43100;\csgenericrgb\c12359\c23384\c24757;
+\csgenericrgb\c18769\c43699\c47289;\csgenericrgb\c72768\c0\c6662;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww26020\viewh17720\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 1. Go to Xcode  and create new project.\
+(SOAnimator1)\
+\
+Select project type and go to next (Here we are selecting Single View Application).\
+(SOAnimator2)\
+\
+Set the project name and go to next.\
+(SOAnimator3)\
+\
+With this you have created a new project.\
+\
+Now create a custom class of UIView:\
+- Right click on project\'92s root folder & select \'93New File\'85\'94 option\
+- Select \'93Source\'94 from left side.\
+- Select \'93Cocoa Touch Class\'94 from available options.\
+- Select Next & give proper name & select UIView as Subclass & then click on Next & click on Create.\
+\
+Method to open sharing menu:\
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f1 \cf2 \CocoaLigature0     \cf3 func\cf2  open() \{\
+        \
+        \cf3 if\cf2  \cf3 self\cf2 .\cf4 flagIsOpen\cf2  == \cf3 false\cf2  \{\
+            \cf3 var\cf2  counter = \cf5 0.0\cf2 \
+            \cf3 for\cf2  tmpViews \cf3 in\cf2  \cf3 self\cf2 .\cf4 arrButtons\cf2  \{\
+                \cf3 let\cf2  subView: \cf6 UIView\cf2  = tmpViews \cf3 as\cf2 ! \cf6 UIView\cf2 \
+                subView.\cf7 alpha\cf2  = \cf5 0\cf2 \
+                \cf6 UIView\cf2 .\cf8 animateWithDuration\cf2 (\cf3 self\cf2 .\cf4 animationDuration\cf2 , delay: \cf3 self\cf2 .\cf4 animationTime\cf2  * counter, usingSpringWithDamping: \cf5 0.7\cf2 , initialSpringVelocity: \cf5 0.4\cf2 , options: .AllowUserInteraction, animations: \{() -> \cf7 Void\cf2  \cf3 in\cf2 \
+                    subView.\cf7 alpha\cf2  = \cf5 1\cf2 \
+                    subView.\cf7 transform\cf2  = \cf3 self\cf2 .\cf9 getButtons\cf2 (counter)\
+                    \}, completion: \{(finished: \cf7 Bool\cf2 ) -> \cf7 Void\cf2  \cf3 in\cf2 \
+                \})\
+                counter += \cf5 1\cf2 \
+            \}\
+            \cf3 self\cf2 .\cf4 flagIsOpen\cf2  = \cf3 true\cf2 \
+        \}\
+        \
+    \}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \CocoaLigature1 \
+Method to close sharing menu:\
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f1 \cf2 \CocoaLigature0     \cf3 func\cf2  close() \{\
+        \cf3 if\cf2  \cf3 self\cf2 .\cf4 flagIsOpen\cf2  == \cf3 true\cf2  \{\
+            \cf3 var\cf2  counter = \cf5 0.0\cf2 \
+            \cf3 for\cf2  tmpViews \cf3 in\cf2  \cf3 self\cf2 .\cf4 arrButtons\cf2  \{\
+                \cf3 let\cf2  subView: \cf6 UIView\cf2  = tmpViews \cf3 as\cf2 ! \cf6 UIView\cf2 \
+                \cf6 UIView\cf2 .\cf8 animateWithDuration\cf2 (\cf3 self\cf2 .\cf4 animationDuration\cf2 , delay: \cf3 self\cf2 .\cf4 animationTime\cf2  * counter, usingSpringWithDamping: \cf5 0.7\cf2 , initialSpringVelocity: \cf5 0.4\cf2 , options: .AllowUserInteraction, animations: \{() -> \cf7 Void\cf2  \cf3 in\cf2 \
+                    subView.\cf7 transform\cf2  = \cf7 CGAffineTransformIdentity\cf2 \
+                    subView.\cf7 alpha\cf2  = \cf5 0\cf2 \
+                    \}, completion: \{(finished: \cf7 Bool\cf2 ) -> \cf7 Void\cf2  \cf3 in\cf2 \
+                \})\
+                counter += \cf5 1\cf2 \
+            \}\
+            \cf3 self\cf2 .\cf4 flagIsOpen\cf2  = \cf3 false\cf2 \
+        \}\
+    \}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \CocoaLigature1 \
+\
+ViewController.swift file\
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+\cf0 \CocoaLigature0 In viewDidLoad() we have created object of custom class 
+\f1 \cf10 SOAnimatorMenu. Then we added 3 buttons for sharing.\
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+\cf3 var\cf2  sharingView = \cf10 SOAnimatorMenu\cf2 ()
+\f0 \cf0 \
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f1 \cf2     \cf3 override\cf2  \cf3 func\cf2  viewDidLoad() \{\
+        \cf3 super\cf2 .\cf8 viewDidLoad\cf2 ()\
+        \
+        \cf4 sharingView\cf2  = \cf10 SOAnimatorMenu\cf2 (frame: \cf8 CGRectMake\cf2 (\cf3 self\cf2 .\cf7 view\cf2 !.\cf7 center\cf2 .\cf7 x\cf2  - \cf5 25\cf2 , \cf5 100\cf2 , \cf5 50\cf2 , \cf5 50\cf2 ))\
+        \cf4 sharingView\cf2 .\cf4 delegate\cf2  = \cf3 self\cf2 \
+        \cf4 sharingView\cf2 .\cf4 mainView\cf2 .\cf7 backgroundColor\cf2  = \cf6 UIColor\cf2 .\cf8 whiteColor\cf2 ()\
+        \cf4 sharingView\cf2 .\cf9 addShareOptions\cf2 (\cf3 nil\cf2 , withName: \cf11 "fb"\cf2 )\
+        \cf4 sharingView\cf2 .\cf9 addShareOptions\cf2 (\cf3 nil\cf2 , withName: \cf11 "twitter"\cf2 )\
+        \cf4 sharingView\cf2 .\cf9 addShareOptions\cf2 (\cf3 nil\cf2 , withName: \cf11 "instagram"\cf2 )\
+        \cf3 self\cf2 .\cf7 view\cf2 !.\cf8 addSubview\cf2 (\cf4 sharingView\cf2 )\
+    \}\
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f0 \cf0 \CocoaLigature1 \
+This is the delegate method which will be called when any of the sharing button is clicked. \
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f1 \cf2 \CocoaLigature0     \cf3 func\cf2  animatorMenu(animatorMenu: \cf10 SOAnimatorMenu\cf2 , didSelectSharingOption name: \cf7 String\cf2 ) \{\
+        \cf3 if\cf2  name == \cf11 "fb"\cf2  \{\
+            \cf3 self\cf2 .\cf9 showAlert\cf2 (\cf3 self\cf2 , messsage: \cf11 "This is Facebook sharing"\cf2 )\
+        \}\
+        \cf3 else\cf2  \cf3 if\cf2  name == \cf11 "twitter"\cf2  \{\
+            \cf3 self\cf2 .\cf9 showAlert\cf2 (\cf3 self\cf2 , messsage: \cf11 "This is Twitter sharing"\cf2 )\
+        \}\
+        \cf3 else\cf2  \cf3 if\cf2  name == \cf11 "instagram"\cf2  \{\
+            \cf3 self\cf2 .\cf9 showAlert\cf2 (\cf3 self\cf2 , messsage: \cf11 "This is Instagram sharing"\cf2 )\
+        \}\
+\
+    \}\
+\pard\tx866\pardeftab866\pardirnatural\partightenfactor0
+
+\f0 \cf0 \CocoaLigature1 \
+Get complete working source from here: <please put GitHub link here>
+\fs28 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+}
