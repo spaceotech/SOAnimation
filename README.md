@@ -1,6 +1,6 @@
 # SOAnimation
 
-# Radial menu in iOS
+## Radial menu in iOS
 
 The radial menu usually used to hide actions with animation. However, they can hide important actions and when used improperly, it can make your experience worse.
 
